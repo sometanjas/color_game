@@ -13,12 +13,10 @@ public class ColorPanel extends JPanel {
     private JButton blueButton = new JButton("Blue");
     private JButton greenButton = new JButton("Green");
     private Timer timer = new Timer( 2000, new BackgroundListener());
-
     private JPanel colourPanel = new JPanel();
     private JLabel resultLabel = new JLabel ("Result: ");
     private ArrayList<Color> shownSequence = new ArrayList<>();
     private ArrayList<Color> inputSequence = new ArrayList<>();
-
     private JLabel showCount = new JLabel("Counts");
     private ArrayList<Color> colors = new ArrayList<>();
 
@@ -26,7 +24,6 @@ public class ColorPanel extends JPanel {
 
     public ColorPanel() {
         super();
-
 
         // default background which separate game phases
         colourPanel.setBackground(defaultBackground);
@@ -54,7 +51,6 @@ public class ColorPanel extends JPanel {
         ActionListener check = new CheckerButtonListener();
         sequenceCheckerButton.addActionListener(check);
 
-
         // playing input colors definitions
         add(redButton);
         add(blueButton);
@@ -66,7 +62,6 @@ public class ColorPanel extends JPanel {
         ActionListener g = new AnyColorListener(Color.green);
         greenButton.addActionListener(g);
 
-
         // result of the game
         add(resultLabel);
     }
@@ -75,7 +70,8 @@ public class ColorPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (SequenceChecker.sequenceChecker(shownSequence, inputSequence)) {
+            SequenceChecker sc = new SequenceChecker();
+            if (sc.sequenceChecker(shownSequence, inputSequence)) {
                 System.out.println("yes");
                 resultLabel.setText("You won");
             }
@@ -139,5 +135,4 @@ public class ColorPanel extends JPanel {
             System.out.println(inputSequence);
         }
     }
-
 }
